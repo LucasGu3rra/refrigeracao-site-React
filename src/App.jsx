@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-// CORREÇÃO: Usando 'Components' com C maiúsculo para combinar com o nome da sua pasta
 import Header from './Components/Header';
 import Hero from './Components/Hero';
 import Features from './Components/Features';
 import Services from './Components/Services';
 import BrandsCarousel from './Components/BrandsCarousel';
 import Testimonials from './Components/Testimonials';
-import WhatsAppForm from './Components/WhatsAppForm';
+// CORREÇÃO AQUI: Mudamos de WhatsAppForm para WhatsappForm (o nome real do arquivo)
+import WhatsAppForm from './Components/WhatsappForm'; 
 import Footer from './Components/Footer';
 
 function App() {
