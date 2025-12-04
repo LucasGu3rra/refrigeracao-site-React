@@ -13,7 +13,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
+    <header className="fixed w-full top-0 z-50 bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-800 transition-all duration-300">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         
         {/* LOGO */}
@@ -23,8 +23,8 @@ export default function Header() {
 
         {/* MENU DESKTOP (Escondido no Mobile) */}
         <nav className="hidden md:flex items-center gap-8">
-          <button onClick={() => scrollToSection('hero')} className="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Início</button>
-          <button onClick={() => scrollToSection('servicos')} className="text-sm font-medium text-gray-600 hover:text-brand-blue transition-colors">Serviços</button>
+          <button onClick={() => scrollToSection('hero')} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Início</button>
+          <button onClick={() => scrollToSection('servicos')} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Serviços</button>
           <button onClick={() => scrollToSection('contato')} className="px-5 py-2.5 bg-brand-blue hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
             Pedir Orçamento
           </button>
@@ -32,7 +32,7 @@ export default function Header() {
 
         {/* BOTÃO HAMBÚRGUER (Visível apenas no Mobile) */}
         <button 
-          className="md:hidden p-2 text-gray-600 hover:text-brand-blue focus:outline-none"
+          className="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? (
@@ -45,9 +45,9 @@ export default function Header() {
 
       {/* MENU MOBILE (Dropdown) */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-gray-100 shadow-xl py-4 flex flex-col items-center gap-4 animation-fade-in-down">
-          <button onClick={() => scrollToSection('hero')} className="w-full py-3 text-center text-gray-700 font-medium hover:bg-gray-50">Início</button>
-          <button onClick={() => scrollToSection('servicos')} className="w-full py-3 text-center text-gray-700 font-medium hover:bg-gray-50">Serviços</button>
+        <div className="md:hidden absolute top-20 left-0 w-full bg-gray-900 border-b border-gray-800 shadow-xl py-4 flex flex-col items-center gap-4 animation-fade-in-down">
+          <button onClick={() => scrollToSection('hero')} className="w-full py-3 text-center text-gray-300 font-medium hover:bg-gray-800">Início</button>
+          <button onClick={() => scrollToSection('servicos')} className="w-full py-3 text-center text-gray-300 font-medium hover:bg-gray-800">Serviços</button>
           <button onClick={() => scrollToSection('contato')} className="w-3/4 py-3 bg-brand-blue text-white font-bold rounded-lg shadow-md mx-auto">
             Pedir Orçamento
           </button>
