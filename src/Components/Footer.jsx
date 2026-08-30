@@ -1,14 +1,24 @@
 import React from 'react';
-// Importando o logotipo que está na sua pasta assets
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logoImg from '../assets/logo.jpg';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+  const handleNavigation = (sectionId) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) section.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -16,17 +26,15 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
       <div className="container mx-auto px-4">
         
-        {/* Grid de 3 Colunas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           
           {/* Coluna 1: Logo e Sobre */}
           <div>
-            {/* LOGOTIPO DA EMPRESA (Substituindo o texto) */}
             <div className="mb-6">
               <img 
                 src={logoImg} 
                 alt="Refrigeration Company" 
-                className="h-16 w-auto object-contain" // Ajuste de altura para ficar proporcional
+                className="h-16 w-auto object-contain" 
               />
             </div>
             
@@ -35,11 +43,9 @@ export default function Footer() {
             </p>
             
             <div className="flex gap-4">
-                {/* Link do Instagram Atualizado */}
                 <a href="https://www.instagram.com/refrigerationcompany/?g=5" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-brand-blue transition-colors group">
                   <svg className="w-5 h-5 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.148 3.225-1.667 4.771-4.919 4.919-1.266.058-1.646.069-4.85.069s-3.584-.011-4.85-.069c-3.225-.148-4.771-1.667-4.919-4.919C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.069-4.85C2.38 3.925 3.901 2.38 7.15 2.233 8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.756 0 8.332.014 7.052.072 2.75.267.267 2.75.072 7.052.014 8.332 0 8.756 0 12s.014 3.668.072 4.948c.195 4.302 2.672 6.785 6.98 6.98C8.332 23.986 8.756 24 12 24s3.668-.014 4.948-.072c4.302-.195 6.785-2.672 6.98-6.98.058-1.28.072-1.704.072-4.948s-.014-3.668-.072-4.948c-.195-4.302-2.672-6.785-6.98-6.98C15.668.014 15.244 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
                 </a>
-                {/* Facebook removido conforme solicitado */}
             </div>
           </div>
 
@@ -47,10 +53,10 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold text-lg mb-6">Navegação</h3>
             <ul className="space-y-4">
-              <li><button onClick={() => scrollToSection('hero')} className="hover:text-brand-blue transition-colors text-sm text-left">Início</button></li>
-              <li><button onClick={() => scrollToSection('servicos')} className="hover:text-brand-blue transition-colors text-sm text-left">Nossos Serviços</button></li>
-              <li><button onClick={() => scrollToSection('contato')} className="hover:text-brand-blue transition-colors text-sm text-left">Solicitar Orçamento</button></li>
-              <li><span className="text-gray-500 text-sm cursor-not-allowed">Política de Privacidade</span></li>
+              <li><button onClick={() => handleNavigation('hero')} className="hover:text-brand-blue transition-colors text-sm text-left">Início</button></li>
+              <li><button onClick={() => handleNavigation('servicos')} className="hover:text-brand-blue transition-colors text-sm text-left">Nossos Serviços</button></li>
+              <li><button onClick={() => handleNavigation('contato')} className="hover:text-brand-blue transition-colors text-sm text-left">Solicitar Orçamento</button></li>
+              <li><Link to="/politica-de-privacidade" className="hover:text-brand-blue transition-colors text-sm text-left">Política de Privacidade</Link></li>
             </ul>
           </div>
 
@@ -72,7 +78,9 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <svg className="w-5 h-5 text-brand-blue shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                <a href="mailto:contato@refrigerationcompany.com.br" className="text-sm hover:text-brand-blue transition-colors">
+                {/* E-MAIL ATUALIZADO AQUI */}
+                <a href="mailto:refrigerationcompany01@gmail.com" className="text-sm hover:text-brand-blue transition-colors">
+                  refrigerationcompany01@gmail.com
                 </a>
               </li>
             </ul>
@@ -80,7 +88,6 @@ export default function Footer() {
 
         </div>
 
-        {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 mt-8 text-center md:text-left md:flex justify-between items-center text-sm text-gray-500">
           <p>© {currentYear} Refrigeration Company. Todos os direitos reservados.</p>
           <p className="mt-2 md:mt-0">Desenvolvido por Lucas Maranhão.</p>

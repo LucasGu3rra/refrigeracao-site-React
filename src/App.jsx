@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Header from './Components/Header';
 import Hero from './Components/Hero';
 import Features from './Components/Features';
 import Services from './Components/Services';
 import BrandsCarousel from './Components/BrandsCarousel';
 import Testimonials from './Components/Testimonials';
-// ATENÇÃO: Mudamos o nome da importação para o novo nome do arquivo
 import ContactForm from './Components/ContactForm'; 
 import Footer from './Components/Footer';
+import PoliticaPrivacidade from './Components/PoliticaPrivacidade'; // Corrigido aqui
 
-function App() {
+// 1. Criamos um componente Home que vai agrupar a sua página principal atual
+const Home = () => {
   const [selectedService, setSelectedService] = useState('Orcamento');
 
   const scrollToForm = () => {
@@ -25,19 +28,17 @@ function App() {
   };
 
   return (
-    <div className="font-sans antialiased text-gray-900 bg-gray-50 relative">
-      <Header />
+    <>
       <main>
         <Hero />
         <Features />
         <Services onSelectService={handleServiceSelect} />
         <BrandsCarousel />
         <Testimonials />
-        {/* Usando o componente com o novo nome */}
         <ContactForm initialService={selectedService} />
       </main>
-      <Footer />
 
+      {/* Mantemos o botão flutuante apenas na Home, pois ele rola a página até o formulário */}
       <button
         onClick={scrollToForm}
         className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#1da851] p-4 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-all duration-300 hover:scale-110 flex items-center justify-center group cursor-pointer"
@@ -50,8 +51,28 @@ function App() {
           Solicitar Orçamento
         </span>
       </button>
+    </>
+  );
+};
 
-    </div>
+// 2. O Componente principal App agora foca apenas em gerenciar as Rotas
+function App() {
+  return (
+    <Router>
+      <div className="font-sans antialiased text-gray-900 bg-gray-50 relative min-h-screen flex flex-col">
+        <Header />
+        
+        {/* Container que gerencia a troca de páginas */}
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} /> {/* Corrigido aqui */}
+          </Routes>
+        </div>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
