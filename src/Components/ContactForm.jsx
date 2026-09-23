@@ -53,16 +53,19 @@ export default function WhatsAppForm({ initialService = 'Orcamento' }) {
       
       <div className="bg-white max-w-4xl w-full flex flex-col md:flex-row rounded-[2rem] shadow-2xl overflow-hidden border border-gray-200 relative">
 
-        {/* LADO ESQUERDO: Imagem (Ajustada para Mobile) */}
-        {/* h-48 no mobile (pequeno) e auto no desktop */}
-        <div className="h-48 md:h-auto md:w-5/12 relative bg-brand-blue group">
-          <div className="absolute inset-0 bg-blue-900/50 mix-blend-multiply z-10"></div>
-          <img 
-            src="https://mxlog.com.br/wp-content/uploads/2019/09/motofrete_blog.jpg"
-            alt="Motoboy" 
-            className="absolute inset-0 w-full h-full object-cover z-0 grayscale group-hover:grayscale-0 transition duration-500"
-          />
-          <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20 text-white bg-gradient-to-t from-black/80 to-transparent w-full">
+        {/* Ilustração inteira, com espaço reservado para a legenda. */}
+        <div className="h-[420px] md:h-auto md:w-5/12 relative bg-black shrink-0">
+          <div className="absolute inset-x-0 top-0 bottom-28 p-3">
+            <img
+              src="/motoboy-refrigeracao-3d.png"
+              alt="Boneco 3D de técnico com capacete, moto e baú de ferramentas com símbolo de refrigeração"
+              loading="lazy"
+              width="1024"
+              height="1536"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="absolute bottom-0 left-0 p-6 md:p-8 text-white w-full">
              <h3 className="text-xl md:text-2xl font-bold mb-1 flex items-center gap-2">
                <span>⚡</span> Chegamos Rápido
              </h3>
