@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { WHATSAPP_URL } from '../config/contact';
 
 export default function WhatsAppForm({ initialService = 'Orcamento' }) {
-  const PHONE_NUMBER = '5511920044158'; 
-
   const [form, setForm] = useState({ 
     nome: '', telefone: '', servico: initialService, endereco: '', descricao: '' 
   });
@@ -44,7 +43,7 @@ export default function WhatsAppForm({ initialService = 'Orcamento' }) {
       `-----------------------------------\n` +
       `*Aguardo retorno.*`;
 
-    const link = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(msg)}`;
+    const link = `${WHATSAPP_URL}?text=${encodeURIComponent(msg)}`;
     window.open(link, '_blank');
   };
 
@@ -81,8 +80,16 @@ export default function WhatsAppForm({ initialService = 'Orcamento' }) {
               Solicite seu Técnico
             </h2>
             <p className="text-gray-500 text-sm">
-              Preencha para agilizar o atendimento.
+              O formulário é opcional. Preencha para agilizar o atendimento.
             </p>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-3 text-sm font-bold text-green-700 hover:text-green-800 underline underline-offset-4"
+            >
+              Falar direto pelo WhatsApp
+            </a>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
