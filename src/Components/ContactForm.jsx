@@ -23,16 +23,16 @@ export default function ContactForm({ initialService = 'Orcamento' }) {
   return (
     <section id="contato" className="py-16 md:py-24 bg-gray-100 px-4">
       <div className="bg-white max-w-4xl mx-auto flex flex-col md:flex-row rounded-3xl shadow-xl overflow-hidden border border-gray-200">
-        <div className="hidden md:flex md:w-5/12 bg-slate-950 flex-col justify-center p-8 text-white">
-          <p className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-5">Fale com a equipe</p>
+        <div className="hidden md:flex md:w-5/12 bg-gray-950 flex-col justify-between p-6 text-white">
+          <img src="/motoboy-refrigeracao-3d.webp" alt="Ilustração de técnico de refrigeração com moto e ferramentas" loading="lazy" width="512" height="768" className="w-full h-96 object-contain" />
           <div>
-            <h3 className="text-xl font-bold mb-2">O próximo passo começa com uma conversa.</h3>
-            <p className="text-blue-200 text-sm">Conte sobre seu equipamento e o que precisa. Nossa equipe conversa com você para combinar a avaliação e o orçamento.</p>
+            <h3 className="text-xl font-bold mb-2">Vamos entender o problema</h3>
+            <p className="text-blue-200 text-sm">Informe seu bairro e consulte disponibilidade. O endereço completo pode ficar para o atendimento.</p>
           </div>
         </div>
         <div className="md:w-7/12 p-6 md:p-10">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Solicite seu atendimento</h2>
-          <p className="text-gray-600 text-sm">Prefere adiantar os detalhes? Preencha o que quiser para preparar sua mensagem no WhatsApp. Todos os campos são opcionais.</p>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Formulário opcional</h2>
+          <p className="text-gray-600 text-sm">Todos os campos são opcionais. Preencha somente o que quiser adiantar ou continue sem preencher.</p>
           <WhatsAppLink service={initialService} placement="form_direct" className="inline-block mt-3 mb-6 text-sm font-bold text-green-800 underline underline-offset-4">Falar direto pelo WhatsApp</WhatsAppLink>
           <form onSubmit={handleSubmit} className="space-y-4" aria-label="Preparar mensagem no WhatsApp">
             <div>

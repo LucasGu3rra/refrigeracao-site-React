@@ -1,23 +1,27 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './Components/Header';
 import Hero from './Components/Hero';
 import Features from './Components/Features';
 import Services from './Components/Services';
 import BrandsCarousel from './Components/BrandsCarousel';
 import Testimonials from './Components/Testimonials';
-import ServiceProcess from './Components/ServiceProcess';
 import ContactForm from './Components/ContactForm';
 import ContactDock from './Components/ContactDock';
 import Footer from './Components/Footer';
 import PoliticaPrivacidade from './Components/PoliticaPrivacidade';
 import SiteLink from './Components/SiteLink';
+import { landingPages } from './config/landingPages';
 
 function PageNavigation() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    document.title = pathname === '/politica-de-privacidade' ? 'Política de Privacidade | Refrigeration Company' : 'Refrigeração Residencial e Comercial em São Paulo | Refrigeration Company';
-    document.querySelector('meta[name="description"]').setAttribute('content', 'Instalação, manutenção e conserto de refrigeração residencial, comercial e industrial em São Paulo. Fale com a Refrigeration Company pelo WhatsApp.');
+    const page = landingPages[pathname];
+    document.title = page ? `${page.title} | Refrigeration Company` : pathname === '/politica-de-privacidade'
+      ? 'Política de Privacidade | Refrigeration Company'
+      : 'Refrigeração Residencial e Comercial em São Paulo | Refrigeration Company';
+    document.querySelector('meta[name="description"]').setAttribute('content', page?.description
+      || 'Instalação, manutenção e conserto de refrigeração e climatização residencial, comercial e industrial em São Paulo. Solicite atendimento pelo WhatsApp.');
     const frame = requestAnimationFrame(() => {
       const target = hash ? document.getElementById(hash.slice(1)) : null;
       if (target) target.scrollIntoView();
@@ -27,19 +31,57 @@ function PageNavigation() {
   }, [pathname, hash]);
   return null;
 }
-function LegacyLanding({ section }) {
-  const { search } = useLocation();
-  return <Navigate replace to={{ pathname: '/', search, hash: '#' + section }} />;
+
+function ServicePage({ page }) {
+  const service = page?.service || 'Orcamento';
+  return (
+    <>
+      <main>
+        <Hero page={page} />
+        {page ? (
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold text-center mb-8">{page.detailsTitle}</h2>
+              <div className="grid md:grid-cols-3 gap-6">
+                {page.details.map(detail => (
+                  <article key={detail.title} className="p-6 rounded-xl border border-gray-200">
+                    <h3 className="text-lg font-bold text-brand-blue mb-3">{detail.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{detail.description}</p>
+                  </article>
+                ))}
+              </div>
+              <p className="text-center text-gray-600 mt-8 text-sm">Confirme valores, disponibilidade e condições de garantia com a equipe antes de contratar.</p>
+            </div>
+          </section>
+        ) : <Features />}
+        <Services serviceIds={page?.services} intent={service} />
+        {!page && <BrandsCarousel />}
+        <Testimonials />
+        <ContactForm initialService={service} />
+      </main>
+      <ContactDock service={service} />
+    </>
+  );
 }
-function HomePage() {
-  return <><main><Hero /><Features /><Services /><BrandsCarousel /><ServiceProcess /><Testimonials /><ContactForm /></main><ContactDock service="Orcamento" /></>;
-}
+
 export default function App() {
-  return <BrowserRouter><PageNavigation /><div className="site-shell font-sans antialiased text-gray-900 bg-white relative min-h-screen flex flex-col"><Header /><div className="flex-grow"><Routes>
-    <Route path="/" element={<HomePage />} />
-    <Route path="/conserto-geladeira" element={<LegacyLanding section="residencial" />} />
-    <Route path="/refrigeracao-comercial" element={<LegacyLanding section="comercial" />} />
-    <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
-    <Route path="*" element={<main className="pt-40 pb-24 px-4 text-center"><h1 className="text-3xl font-bold mb-6">Página não encontrada</h1><SiteLink to="/" className="text-blue-700 underline">Voltar ao início</SiteLink></main>} />
-  </Routes></div><Footer /></div></BrowserRouter>;
+  return (
+    <BrowserRouter>
+      <PageNavigation />
+      <div className="site-shell font-sans antialiased text-gray-900 bg-gray-50 relative min-h-screen flex flex-col">
+        <Header />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<ServicePage key="home" />} />
+            {Object.entries(landingPages).map(([path, page]) => (
+              <Route key={path} path={path} element={<ServicePage key={path} page={page} />} />
+            ))}
+            <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
+            <Route path="*" element={<main className="pt-40 pb-24 px-4 text-center"><h1 className="text-3xl font-bold mb-6">Página não encontrada</h1><SiteLink to="/" className="text-blue-700 underline">Voltar ao início</SiteLink></main>} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }

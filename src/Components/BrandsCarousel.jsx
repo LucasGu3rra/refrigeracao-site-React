@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 // IMPORTANDO AS IMAGENS LOCAIS
 import brastempImg from '../assets/brands/brastemp.svg';
@@ -22,5 +22,66 @@ const brands = [
 ];
 
 export default function BrandsCarousel() {
-  return <section className="py-12 bg-white border-t border-slate-100"><div className="container mx-auto px-4"><p className="text-center uppercase text-xs tracking-widest font-semibold text-slate-500 mb-8">Atendimento a diferentes marcas e modelos</p><div className="grid grid-cols-4 md:grid-cols-8 items-center gap-6">{brands.map(brand => <img key={brand.name} src={brand.logo} alt={brand.name} loading="lazy" width="128" height="48" className="h-9 sm:h-12 w-full object-contain" />)}</div></div></section>;
+  return (
+    <section className="py-12 bg-white border-y border-gray-100 overflow-hidden">
+      <div className="container mx-auto px-4 mb-8 text-center">
+        <p className="text-gray-500 font-medium uppercase tracking-widest text-sm">
+          Especialistas nas Principais Marcas
+        </p>
+      </div>
+
+      <div className="relative w-full overflow-hidden">
+        
+        {/* Degradês laterais mantidos para suavizar */}
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+        <div className="flex w-[200%] animate-scroll hover:pause">
+          
+          {/* GRUPO 1 */}
+          <div className="flex w-1/2 justify-around items-center gap-8 px-4">
+            {brands.map((brand, index) => (
+              // REMOVIDO: grayscale, hover:grayscale-0, opacity-60, hover:opacity-100
+              // MANTIDO: transform hover:scale-110 para um leve efeito de "zoom"
+              <div key={`brand-1-${index}`} className="flex items-center justify-center w-32 h-20 transition-all duration-500 transform hover:scale-110 cursor-pointer">
+                <img 
+                  src={brand.logo} 
+                  alt={`${brand.name} logo`} 
+                  className="max-w-full max-h-12 object-contain" 
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* GRUPO 2 (Duplicado) */}
+          <div className="flex w-1/2 justify-around items-center gap-8 px-4">
+            {brands.map((brand, index) => (
+              // REMOVIDO: grayscale, hover:grayscale-0, opacity-60, hover:opacity-100
+              <div key={`brand-2-${index}`} className="flex items-center justify-center w-32 h-20 transition-all duration-500 transform hover:scale-110 cursor-pointer">
+                <img 
+                  src={brand.logo} 
+                  alt={`${brand.name} logo`} 
+                  className="max-w-full max-h-12 object-contain" 
+                />
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+      
+      <style>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+        .hover\\:pause:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </section>
+  );
 }
