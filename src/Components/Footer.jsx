@@ -52,6 +52,7 @@ export default function Footer() {
           {/* Coluna 3: Contato */}
           <div>
             <h3 className="text-white font-bold text-lg mb-6">Fale Conosco</h3>
+            <p className="text-sm mb-5">Segunda a sexta: 8h às 18h<br />Sábado: 8h às 12h</p>
             <ul className="space-y-5">
               <li className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-brand-blue mt-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>

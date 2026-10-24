@@ -18,10 +18,10 @@ export default function Hero({ page }) {
             ❄️ {page?.badge || 'ESPECIALISTAS EM REFRIGERAÇÃO'}
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            {page?.title || <>Soluções Técnicas para <span className="text-blue-400">Climatização e Frio.</span></>}
+            {page?.title || <>Refrigeração <span className="text-blue-400">Residencial e Comercial</span> em São Paulo</>}
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-200 mb-8 leading-relaxed max-w-3xl mx-auto">
-            {page?.description || 'Instalação e manutenção de sistemas residenciais e comerciais. Conte o problema e consulte disponibilidade para seu bairro em São Paulo.'}
+            {page?.description || 'Instalação, manutenção e conserto de geladeiras, freezers, ar-condicionado, câmaras frias e equipamentos comerciais e industriais. Fale com nossa equipe e solicite seu atendimento.'}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <WhatsAppLink service={service} placement="hero" className="w-full sm:w-auto px-6 py-4 bg-[#25D366] hover:bg-[#1da851] text-gray-950 font-bold rounded-lg shadow-xl transition-all text-base sm:text-lg">
@@ -31,11 +31,7 @@ export default function Hero({ page }) {
               Ligar: (11) 92004-4158
             </PhoneLink>
           </div>
-          <p className="mt-4 text-sm text-gray-200">Sem preencher formulário. Você revisa e envia a mensagem no WhatsApp.</p>
-          <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-white text-sm">
-            <a href="#servicos" className="underline underline-offset-4">Ver serviços</a>
-            <a href="#contato" className="underline underline-offset-4">Prefiro preencher o formulário opcional</a>
-          </div>
+          <p className="mt-5 text-sm text-gray-200">Segunda a sexta, 8h às 18h · Sábado, 8h às 12h</p>
         </div>
       </div>
     </section>

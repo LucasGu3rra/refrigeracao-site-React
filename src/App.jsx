@@ -19,9 +19,9 @@ function PageNavigation() {
     const page = landingPages[pathname];
     document.title = page ? `${page.title} | Refrigeration Company` : pathname === '/politica-de-privacidade'
       ? 'Política de Privacidade | Refrigeration Company'
-      : 'Refrigeration Company | Climatização e Refrigeração em SP';
+      : 'Refrigeração Residencial e Comercial em São Paulo | Refrigeration Company';
     document.querySelector('meta[name="description"]').setAttribute('content', page?.description
-      || 'Instalação, manutenção e conserto de equipamentos de refrigeração em São Paulo. Consulte disponibilidade pelo WhatsApp.');
+      || 'Instalação, manutenção e conserto de refrigeração e climatização residencial, comercial e industrial em São Paulo. Solicite atendimento pelo WhatsApp.');
     const frame = requestAnimationFrame(() => {
       const target = hash ? document.getElementById(hash.slice(1)) : null;
       if (target) target.scrollIntoView();

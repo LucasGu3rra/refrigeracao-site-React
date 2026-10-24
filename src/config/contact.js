@@ -3,7 +3,7 @@ export const PHONE_URL = 'tel:+5511920044158';
 
 export const SERVICE_LABELS = {
   Orcamento: 'atendimento técnico em refrigeração',
-  Residencial: 'conserto de geladeira ou freezer residencial',
+  Residencial: 'refrigeração e climatização residencial',
   Comercial: 'refrigeração comercial',
   Reparo: 'conserto de equipamento',
   Manutencao: 'manutenção preventiva',
