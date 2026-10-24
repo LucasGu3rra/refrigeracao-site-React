@@ -1,3 +1,5 @@
+> Atualização posterior em 24/10/2026: o proprietário criou o contêiner `GTM-KMPHXCVH` na conta atual da empresa e autorizou substituir `GTM-N7926KD`. Os dois snippets de `index.html` (script e noscript) foram atualizados. A Google tag direta `AW-17045665288` e a conversão de clique `AW-17045665288/hPdoCJ_ktJwcEIjsgMA_` foram preservadas. Não criar uma conversão duplicada no novo GTM. A instalação do snippet não configura nem publica tags dentro do contêiner. Nenhuma configuração do contêiner antigo foi importada; seus destinos GA4 não tiveram a propriedade confirmada. Sem novos testes, a pedido do usuário; o hit de conversão continua pendente de validação pelo proprietário. As seções abaixo registram a revisão anterior à troca do GTM.
+
 # Conversão de saída ao WhatsApp — 24/10/2026
 
 ## Implementação ativa no código
