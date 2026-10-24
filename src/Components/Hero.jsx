@@ -31,7 +31,6 @@ export default function Hero({ page }) {
               Ligar: (11) 92004-4158
             </PhoneLink>
           </div>
-          <p className="mt-5 text-sm text-gray-200">Segunda a sexta, 8h às 18h · Sábado, 8h às 12h</p>
         </div>
       </div>
     </section>
