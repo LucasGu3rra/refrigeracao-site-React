@@ -4,4 +4,35 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  scroll-padding-bottom: 6rem;
+}
+
+:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 4px;
+}
+
+.site-shell {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+}
+
+.mobile-contact-bar {
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+}
+
+input, select, textarea {
+  scroll-margin-block: 6rem;
+}
+
+@media (min-width: 768px) {
+  .site-shell { padding-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import SiteLink from './SiteLink';
 
 const PoliticaPrivacidade = () => {
   return (
     <div className="min-h-screen bg-gray-900/40 backdrop-blur-md pt-28 pb-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative z-50">
-      
+
       {/* Contêiner principal com altura fixa e barra de rolagem interna */}
       <div className="bg-white w-full max-w-3xl rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-gray-100 flex flex-col max-h-[80vh] overflow-hidden">
-        
+
         {/* Cabeçalho Fixo do Modal */}
         <div className="p-6 sm:p-8 bg-white border-b border-gray-100 flex items-center justify-between shrink-0">
           <div>
@@ -15,20 +15,20 @@ const PoliticaPrivacidade = () => {
             <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
               Política de Privacidade
             </h1>
-            <p className="text-xs text-gray-400 mt-0.5">Refrigeration Company • Atualizado em Agosto de 2026</p>
+            <p className="text-xs text-gray-400 mt-0.5">Refrigeration Company • Atualizado em Outubro de 2026</p>
           </div>
-          <Link 
-            to="/" 
+          <SiteLink
+            to="/"
             className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition-colors font-bold text-lg"
             title="Fechar"
           >
             ✕
-          </Link>
+          </SiteLink>
         </div>
 
         {/* Corpo com rolagem interna (scrollbar customizada) */}
         <div className="p-6 sm:p-8 overflow-y-auto space-y-6 divide-y divide-gray-100 custom-scrollbar">
-          
+
           {/* Introdução */}
           <div className="pb-4">
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
@@ -43,17 +43,17 @@ const PoliticaPrivacidade = () => {
               <div className="flex-1">
                 <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-2">Informações que Coletamos</h2>
                 <p className="text-gray-600 text-sm sm:text-base mb-3 leading-relaxed">
-                  Coletamos as informações que você nos fornece voluntariamente por meio de nossos formulários de lead e contato:
+                  Você pode fornecer os dados abaixo, todos opcionais, para preparar sua mensagem de atendimento. O formulário abre o WhatsApp para você revisar e enviar:
                 </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-700">
                   <li className="bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Nome completo
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Nome (opcional)
                   </li>
                   <li className="bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Número de telefone (WhatsApp)
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Telefone para retorno (opcional)
                   </li>
                   <li className="bg-gray-50 p-2.5 rounded-lg border border-gray-100 flex items-center gap-2 sm:col-span-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Endereço de e-mail
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Bairro / cidade e detalhes do equipamento (opcionais)
                   </li>
                 </ul>
               </div>
@@ -146,12 +146,12 @@ const PoliticaPrivacidade = () => {
 
         {/* Rodapé fixo do Modal com botão de fechar */}
         <div className="p-4 bg-gray-50 border-t border-gray-100 flex justify-end shrink-0">
-          <Link 
-            to="/" 
+          <SiteLink
+            to="/"
             className="bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-6 py-2.5 rounded-xl transition-all shadow-sm"
           >
             Entendido / Voltar
-          </Link>
+          </SiteLink>
         </div>
 
       </div>

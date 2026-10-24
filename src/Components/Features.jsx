@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function Features() {
   const features = [
-    { title: "Atendimento Rápido", desc: "Chegamos até você o mais breve possível para não deixar seus alimentos estragarem." },
-    { title: "Garantia de 90 Dias", desc: "Todo serviço prestado possui garantia legal de 3 meses para sua segurança." },
-    { title: "Técnicos Certificados", desc: "Profissionais treinados e especializados nas principais marcas do mercado." },
+    { title: "Consulte a disponibilidade", desc: "Informe seu bairro e o problema para combinar o atendimento com a equipe." },
+    { title: "Condições de garantia", desc: "Confirme as condições e a cobertura da garantia no orçamento do serviço." },
+    { title: "Conte sobre o equipamento", desc: "Informe marca e modelo para confirmar o atendimento ao seu equipamento." },
     { title: "Preço Justo", desc: "Orçamento transparente sem taxas escondidas ou surpresas na hora de pagar." },
   ];
 

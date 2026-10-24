@@ -1,16 +1,25 @@
-# React + Vite
+# Refrigeration Company
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site em React e Vite com contato direto pelo WhatsApp.
 
-Currently, two official plugins are available:
+```sh
+npm install
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Validação:
 
-## React Compiler
+```sh
+npm test
+npm run lint
+npm run build
+npm run preview
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Páginas: `/`, `/conserto-geladeira`, `/refrigeracao-comercial` e `/politica-de-privacidade`.
 
-## Expanding the ESLint configuration
+O número, as mensagens e os serviços ficam em `src/config/contact.js`. Os textos das páginas de anúncios ficam em `src/config/landingPages.js`. Os links de contato abrem uma mensagem para o visitante revisar e enviar; o formulário é inteiramente opcional.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Em desenvolvimento, `/tests/manual-contact.html` carrega os mesmos componentes com captura local dos destinos e eventos. O teste não executa Google tags, ligações ou mensagens. A página de teste não é incluída na compilação de produção. Reabra esse caminho para reiniciar a captura; recarregar após navegar para outra rota carrega a aplicação normal.
+
+Consulte [medição e publicação](docs/medicao-e-publicacao.md), [resultados dos testes](docs/validacao.md) e [modelo de registro de contatos](docs/registro-de-leads.md). A validação de conversões nas contas GTM/Google Ads permanece pendente de acesso do administrador.

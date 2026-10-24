@@ -1,149 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { WHATSAPP_URL } from '../config/contact';
+import { useState } from 'react';
+import { getWhatsAppUrl, isValidOptionalPhone, SERVICE_LABELS } from '../config/contact';
+import { trackContactEvent } from '../utils/contactEvents';
+import { WhatsAppLink } from './ContactLinks';
 
-export default function WhatsAppForm({ initialService = 'Orcamento' }) {
-  const [form, setForm] = useState({ 
-    nome: '', telefone: '', servico: initialService, endereco: '', descricao: '' 
-  });
-
-  useEffect(() => {
-    setForm(prevForm => ({ ...prevForm, servico: initialService }));
-  }, [initialService]);
-
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { nome, telefone, servico, endereco, descricao } = form;
-    
-    const servicosBonitos = {
-      'Orcamento': 'Orçamento Geral',
-      'Reparo': 'Conserto / Quebrou',
-      'Manutencao': 'Manutenção Preventiva',
-      'Instalacao': 'Instalação Nova',
-      'Chillers': 'Chillers & Industrial',
-      'CamaraFria': 'Câmara Fria',
-      'Expositores': 'Expositores / Bebidas',
-      'ArCondicionado': 'Ar Condicionado',
-      'Geladeira': 'Geladeira Inox / Comercial',
-      'Freezer': 'Freezer Comercial'
-    };
-    
-    const tipoServico = servicosBonitos[servico] || servico;
-
-    const msg = 
-      `*REFRIGERATION COMPANY*\n` +
-      `-----------------------------------\n` +
-      `*NOVA SOLICITAÇÃO VIA SITE*\n\n` +
-      `👤 *Cliente:* ${nome}\n` +
-      `📱 *WhatsApp:* ${telefone}\n` +
-      `📍 *Endereço:* ${endereco}\n` +
-      `❄️ *Serviço:* ${tipoServico}\n` +
-      `📝 *Detalhes:* ${descricao}\n` +
-      `-----------------------------------\n` +
-      `*Aguardo retorno.*`;
-
-    const link = `${WHATSAPP_URL}?text=${encodeURIComponent(msg)}`;
-    window.open(link, '_blank');
+export default function ContactForm({ initialService = 'Orcamento' }) {
+  const [form, setForm] = useState({ nome: '', telefone: '', servico: initialService, bairro: '', descricao: '' });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'telefone') {
+      event.target.setCustomValidity(isValidOptionalPhone(value) ? '' : 'Informe um telefone com DDD ou deixe este campo em branco.');
+    }
+    setForm({ ...form, [name]: value });
   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!event.currentTarget.reportValidity()) return;
+    // This opens a draft; it does not submit a lead or send a message automatically.
+    window.open(getWhatsAppUrl(form.servico, form), '_blank', 'noopener,noreferrer');
+    trackContactEvent('whatsapp_form_redirect', 'form', form.servico);
+  };
+  const inputClass = 'w-full rounded-lg border border-gray-300 p-3 text-gray-800 bg-white focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-100';
   return (
-    <section id="contato" className="py-16 md:py-24 bg-gray-100 flex items-center justify-center px-4">
-      
-      <div className="bg-white max-w-4xl w-full flex flex-col md:flex-row rounded-[2rem] shadow-2xl overflow-hidden border border-gray-200 relative">
-
-        {/* Ilustração inteira, com espaço reservado para a legenda. */}
-        <div className="h-[420px] md:h-auto md:w-5/12 relative bg-black shrink-0">
-          <div className="absolute inset-x-0 top-0 bottom-28 p-3">
-            <img
-              src="/motoboy-refrigeracao-3d.png"
-              alt="Boneco 3D de técnico com capacete, moto e baú de ferramentas com símbolo de refrigeração"
-              loading="lazy"
-              width="1024"
-              height="1536"
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div className="absolute bottom-0 left-0 p-6 md:p-8 text-white w-full">
-             <h3 className="text-xl md:text-2xl font-bold mb-1 flex items-center gap-2">
-               <span>⚡</span> Chegamos Rápido
-             </h3>
-             <p className="text-blue-200 text-xs md:text-sm">Técnico com peças a caminho.</p>
+    <section id="contato" className="py-16 md:py-24 bg-gray-100 px-4">
+      <div className="bg-white max-w-4xl mx-auto flex flex-col md:flex-row rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+        <div className="hidden md:flex md:w-5/12 bg-gray-950 flex-col justify-between p-6 text-white">
+          <img src="/motoboy-refrigeracao-3d.webp" alt="Ilustração de técnico de refrigeração com moto e ferramentas" loading="lazy" width="512" height="768" className="w-full h-96 object-contain" />
+          <div>
+            <h3 className="text-xl font-bold mb-2">Vamos entender o problema</h3>
+            <p className="text-blue-200 text-sm">Informe seu bairro e consulte disponibilidade. O endereço completo pode ficar para o atendimento.</p>
           </div>
         </div>
-
-        {/* LADO DIREITO: Formulário */}
-        <div className="md:w-7/12 p-6 md:p-12 bg-white relative">
-          
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">
-              Solicite seu Técnico
-            </h2>
-            <p className="text-gray-500 text-sm">
-              O formulário é opcional. Preencha para agilizar o atendimento.
-            </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-3 text-sm font-bold text-green-700 hover:text-green-800 underline underline-offset-4"
-            >
-              Falar direto pelo WhatsApp
-            </a>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            
-            <div className="relative">
-              <input type="text" name="nome" value={form.nome} required onChange={handleChange} className="peer w-full border-b border-gray-300 py-2 text-gray-700 focus:outline-none focus:border-brand-blue placeholder-transparent bg-transparent" placeholder="Nome" />
-              <label className="absolute left-0 -top-3.5 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-gray-500 peer-focus:text-xs">Nome Completo*</label>
+        <div className="md:w-7/12 p-6 md:p-10">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Formulário opcional</h2>
+          <p className="text-gray-600 text-sm">Todos os campos são opcionais. Preencha somente o que quiser adiantar ou continue sem preencher.</p>
+          <WhatsAppLink service={initialService} placement="form_direct" className="inline-block mt-3 mb-6 text-sm font-bold text-green-800 underline underline-offset-4">Falar direto pelo WhatsApp</WhatsAppLink>
+          <form onSubmit={handleSubmit} className="space-y-4" aria-label="Preparar mensagem no WhatsApp">
+            <div>
+              <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-1">Nome (opcional)</label>
+              <input id="contact-name" type="text" name="nome" autoComplete="name" value={form.nome} onChange={handleChange} maxLength="100" className={inputClass} />
             </div>
-
-            <div className="relative mt-4">
-              <input type="tel" name="telefone" value={form.telefone} required onChange={handleChange} className="peer w-full border-b border-gray-300 py-2 text-gray-700 focus:outline-none focus:border-brand-blue placeholder-transparent bg-transparent" placeholder="Tel" />
-              <label className="absolute left-0 -top-3.5 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-gray-500 peer-focus:text-xs">WhatsApp (DDD)*</label>
+            <div>
+              <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-1">Telefone para retorno (opcional)</label>
+              <input id="contact-phone" type="tel" name="telefone" autoComplete="tel" value={form.telefone} onChange={handleChange} maxLength="25" aria-describedby="phone-help" className={inputClass} />
+              <p id="phone-help" className="text-xs text-gray-500 mt-1">Se preencher, inclua o DDD. Ex.: (11) 99999-9999.</p>
             </div>
-
-            <div className="relative mt-4">
-              <input type="text" name="endereco" value={form.endereco} required onChange={handleChange} className="peer w-full border-b border-gray-300 py-2 text-gray-700 focus:outline-none focus:border-brand-blue placeholder-transparent bg-transparent" placeholder="Endereço" />
-              <label className="absolute left-0 -top-3.5 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-gray-500 peer-focus:text-xs">Endereço Completo*</label>
+            <div>
+              <label htmlFor="contact-neighborhood" className="block text-sm font-medium text-gray-700 mb-1">Bairro / cidade (opcional)</label>
+              <input id="contact-neighborhood" type="text" name="bairro" value={form.bairro} onChange={handleChange} maxLength="150" className={inputClass} />
             </div>
-
-            <div className="relative mt-4">
-              <select 
-                name="servico" 
-                value={form.servico} 
-                onChange={handleChange} 
-                className="w-full border-b border-gray-300 py-2 text-gray-700 focus:outline-none focus:border-brand-blue bg-transparent cursor-pointer text-sm"
-              >
-                <optgroup label="Geral">
-                  <option value="Orcamento">Quero um Orçamento</option>
-                  <option value="Reparo">Conserto Urgente</option>
-                  <option value="Manutencao">Manutenção Preventiva</option>
-                  <option value="Instalacao">Instalação Nova</option>
-                </optgroup>
-                <optgroup label="Equipamentos">
-                  <option value="Chillers">Chillers & Industrial</option>
-                  <option value="CamaraFria">Câmara Fria</option>
-                  <option value="Expositores">Expositores / Bebidas</option>
-                  <option value="ArCondicionado">Ar Condicionado</option>
-                  <option value="Geladeira">Geladeira Inox / Comercial</option>
-                  <option value="Freezer">Freezer Comercial</option>
-                </optgroup>
+            <div>
+              <label htmlFor="contact-service" className="block text-sm font-medium text-gray-700 mb-1">Serviço de interesse (opcional)</label>
+              <select id="contact-service" name="servico" value={form.servico} onChange={handleChange} className={inputClass}>
+                {Object.entries(SERVICE_LABELS).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
               </select>
             </div>
-
-            <div className="relative mt-4">
-              <textarea name="descricao" value={form.descricao} rows="2" onChange={handleChange} className="peer w-full border-b border-gray-300 py-2 text-gray-700 focus:outline-none focus:border-brand-blue placeholder-transparent resize-none bg-transparent" placeholder="Msg"></textarea>
-              <label className="absolute left-0 -top-3.5 text-gray-500 text-xs transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400 peer-focus:-top-3.5 peer-focus:text-gray-500 peer-focus:text-xs">Detalhes (Opcional)</label>
+            <div>
+              <label htmlFor="contact-details" className="block text-sm font-medium text-gray-700 mb-1">Equipamento / problema (opcional)</label>
+              <textarea id="contact-details" name="descricao" value={form.descricao} rows="3" onChange={handleChange} maxLength="1000" className={`${inputClass} resize-y`} />
             </div>
-
-            <button type="submit" className="w-full mt-6 py-3 bg-brand-blue hover:bg-blue-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-              <span>🚀</span> Enviar no WhatsApp
-            </button>
+            <button type="submit" className="w-full py-3 px-4 bg-brand-blue hover:bg-blue-800 text-white font-bold rounded-xl shadow-lg">Continuar no WhatsApp</button>
+            <p className="text-xs text-gray-500">Uma mensagem será preparada para você revisar e enviar no WhatsApp. Nada é enviado automaticamente.</p>
           </form>
         </div>
-
       </div>
     </section>
   );
