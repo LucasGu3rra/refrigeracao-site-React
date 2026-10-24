@@ -1,13 +1,15 @@
 # Medição de contatos — implementação e pendências
 
-Revisão local: 23/10/2026. As alterações estão no código; publicação e validação nas contas Google ainda não foram realizadas.
+> Atualização de 24/10/2026: o clique WhatsApp agora envia uma conversão diretamente pela Google tag para `AW-17045665288/hPdoCJ_ktJwcEIjsgMA_`. Consulte [a implementação atual e a validação](conversao-whatsapp.md). As orientações abaixo são o histórico da preparação anterior: não ativar uma segunda conversão pelo GTM enquanto o envio direto estiver ativo.
+
+Revisão local: 23/10/2026. Uma inspeção posterior confirmou HTTP 200 nas três páginas públicas e a presença das tags/eventos no código publicado. A vinculação e a validação de conversões nas contas Google continuam pendentes. Consulte `../outputs/mensagem-para-desenvolvedor.md` para a atualização e o acionador proposto.
 
 ## Instalação encontrada
 
 - `index.html`: GTM `GTM-N7926KD` e Google tag direta `AW-17045665288`.
 - O código anterior não emitia eventos próprios de WhatsApp, telefone ou formulário. Não foi encontrado ID GA4 configurado diretamente no repositório.
 - A resposta pública do contêiner GTM retornou HTTP 200 e versão 452 na consulta desta revisão. Ela contém referências a outros IDs Ads e GA4, incluindo `G-7YR7W5LMY5` e `G-J51Y85KVRZ`, além de condições para domínios `ads.google.*`. Não foi encontrada a string `AW-17045665288` nesse conteúdo. Isso é um indício de configuração incompatível com a tag direta, que precisa ser investigado pelo administrador; não comprova propriedade nem quais tags efetivamente disparam neste domínio.
-- As instalações existentes foram preservadas. Não foram adicionadas tags remotas, IDs de conversão, rótulos ou ações Google Ads.
+- As instalações existentes foram preservadas. Na preparação inicial não foram adicionadas tags remotas nem ações Google Ads. Em 24/10/2026 foi adicionado o envio direto da conversão ao rótulo fornecido pelo usuário, usando a tag global existente.
 - A existência de GTM e gtag ao mesmo tempo não comprova duplicação. É necessário inspecionar os destinos, gatilhos e as requisições no Tag Assistant.
 
 ## Eventos disponíveis no dataLayer
@@ -44,7 +46,7 @@ O `vercel.json` existente mantém a reescrita de rotas React para `index.html`. 
 - `https://refrigeracao-site-react.vercel.app/conserto-geladeira`
 - `https://refrigeracao-site-react.vercel.app/refrigeracao-comercial`
 
-Esses são os destinos previstos, não confirmação de publicação. Manter os anúncios com os destinos atuais até conferir o deploy. Depois atualizar os destinos residencial/comercial com o responsável pelos anúncios.
+Uma inspeção posterior confirmou que esses endereços públicos respondem com HTTP 200 e entregam o bundle com os eventos de contato. O responsável informou que os destinos dos anúncios foram alinhados às duas páginas; essa configuração da conta e a revisão dos anúncios pelo Google não foram auditadas neste ambiente. Revalidar os fluxos publicados no navegador e no Tag Assistant antes de declarar a medição concluída.
 
 Antes de anunciar, confirmar marcas, regiões e condições de garantia com o proprietário. As páginas novas pedem consulta de disponibilidade e não publicam prazos fixos, diagnóstico gratuito ou garantias não confirmadas. A seção de avaliações aponta ao perfil do Google existente no projeto, sem reproduzir nota ou datas estáticas.
 

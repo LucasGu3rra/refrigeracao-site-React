@@ -1,5 +1,7 @@
 # Validação local
 
+> Atualização de 24/10/2026: agora são 16 testes automatizados aprovados. Foram adicionados testes para o disparo direto da conversão Ads somente em ações WhatsApp. O estado da verificação no Tag Assistant está em [conversao-whatsapp.md](conversao-whatsapp.md); a captura local anterior abaixo não comprova entrega de conversão ao Google.
+
 Data de referência: 23/10/2026 (America/Sao_Paulo). Esta verificação é do código local; não certifica o site publicado nem as conversões nas contas Google.
 
 ## Verificações executadas

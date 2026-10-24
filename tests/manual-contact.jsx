@@ -5,10 +5,14 @@ import { createRoot } from 'react-dom/client';
 import App from '../src/App';
 import '../src/index.css';
 
-const report = { events: [], destinations: [] };
+const report = { events: [], destinations: [], conversions: [] };
 const updateReport = () => {
   document.getElementById('qa-summary').textContent = `QA: ${report.events.length} eventos / ${report.destinations.length} aberturas`;
   document.getElementById('qa-report').textContent = JSON.stringify(report, null, 2);
+};
+window.gtag = (...args) => {
+  report.conversions.push(args);
+  updateReport();
 };
 window.dataLayer = [];
 window.dataLayer.push = (...items) => {
