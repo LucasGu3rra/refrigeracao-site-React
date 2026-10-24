@@ -1,35 +1,25 @@
 import heroImage from '../assets/images/hero-refrigeracao.jpg';
-import residentialImage from '../assets/services/geladeira.webp';
-import commercialImage from '../assets/services/camara.webp';
 import { WhatsAppLink, PhoneLink } from './ContactLinks';
 
-export default function Hero({ page }) {
-  const service = page?.service || 'Orcamento';
-  const image = service === 'Residencial' ? residentialImage : service === 'Comercial' ? commercialImage : heroImage;
+export default function Hero() {
   return (
-    <section id="hero" className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img src={image} alt="" fetchPriority="high" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/65" />
-      </div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block px-5 py-2 bg-blue-600 text-white font-bold text-sm rounded-full mb-6 shadow-lg">
-            ❄️ {page?.badge || 'ESPECIALISTAS EM REFRIGERAÇÃO'}
+    <section id="hero" className="relative bg-slate-950 text-white pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-slate-950 to-slate-900" />
+      <div className="container mx-auto px-4 relative grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="max-w-2xl">
+          <p className="text-blue-300 text-xs sm:text-sm font-bold tracking-[0.18em] uppercase mb-6">Refrigeration Company · São Paulo</p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6">Refrigeração para sua <span className="text-blue-400">casa e seu negócio.</span></h1>
+          <p className="text-lg text-slate-300 leading-relaxed mb-8">Instalação, manutenção e conserto de geladeiras, freezers, câmaras frias e climatização. Atendimento residencial, comercial e industrial em São Paulo.</p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <WhatsAppLink placement="hero" className="inline-flex justify-center items-center px-6 py-4 bg-[#25D366] hover:bg-[#1da851] text-gray-950 font-bold rounded-xl transition-colors">Solicitar atendimento no WhatsApp <span aria-hidden="true" className="ml-3">↗</span></WhatsAppLink>
+            <PhoneLink placement="hero" className="inline-flex justify-center items-center px-5 py-4 border border-slate-600 rounded-xl font-semibold hover:bg-white/10">Ligar: (11) 92004-4158</PhoneLink>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-            {page?.title || <>Refrigeração <span className="text-blue-400">Residencial e Comercial</span> em São Paulo</>}
-          </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-200 mb-8 leading-relaxed max-w-3xl mx-auto">
-            {page?.description || 'Instalação, manutenção e conserto de geladeiras, freezers, ar-condicionado, câmaras frias e equipamentos comerciais e industriais. Fale com nossa equipe e solicite seu atendimento.'}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <WhatsAppLink service={service} placement="hero" className="w-full sm:w-auto px-6 py-4 bg-[#25D366] hover:bg-[#1da851] text-gray-950 font-bold rounded-lg shadow-xl transition-all text-base sm:text-lg">
-              {page?.cta || 'Pedir atendimento no WhatsApp'}
-            </WhatsAppLink>
-            <PhoneLink service={service} placement="hero" className="w-full sm:w-auto px-6 py-4 border-2 border-white/50 text-white font-bold rounded-lg hover:bg-white/10 transition-all">
-              Ligar: (11) 92004-4158
-            </PhoneLink>
+        </div>
+        <div className="relative">
+          <img src={heroImage} alt="Ferramentas de manutenção em refrigeração" fetchPriority="high" width="1200" height="800" className="w-full h-64 sm:h-80 lg:h-[440px] object-cover rounded-2xl border border-white/10" />
+          <div className="absolute bottom-4 left-4 right-4 rounded-xl bg-slate-950/90 p-5 border border-white/10 backdrop-blur-sm">
+            <p className="text-white font-bold">Um contato. Diferentes soluções.</p>
+            <p className="text-slate-300 text-sm mt-1">Do equipamento doméstico aos sistemas de refrigeração da sua empresa.</p>
           </div>
         </div>
       </div>

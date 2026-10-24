@@ -41,8 +41,8 @@ export default function Footer() {
             <h3 className="text-white font-bold text-lg mb-6">Navegação</h3>
             <ul className="space-y-4">
               <li><SiteLink to="/#hero" className="hover:text-white text-sm">Início</SiteLink></li>
-              <li><SiteLink to="/conserto-geladeira" className="hover:text-white text-sm">Conserto de geladeira</SiteLink></li>
-              <li><SiteLink to="/refrigeracao-comercial" className="hover:text-white text-sm">Refrigeração comercial</SiteLink></li>
+              <li><SiteLink to="/#residencial" className="hover:text-white text-sm">Atendimento residencial</SiteLink></li>
+              <li><SiteLink to="/#comercial" className="hover:text-white text-sm">Refrigeração comercial</SiteLink></li>
               <li><WhatsAppLink placement="footer" service={service} className="hover:text-white text-sm">Pedir orçamento no WhatsApp</WhatsAppLink></li>
               <li><SiteLink to={pathname === '/politica-de-privacidade' ? '/#contato' : `${pathname}#contato`} className="hover:text-white text-sm">Formulário opcional</SiteLink></li>
               <li><SiteLink to="/politica-de-privacidade" className="hover:text-brand-blue transition-colors text-sm text-left">Política de Privacidade</SiteLink></li>

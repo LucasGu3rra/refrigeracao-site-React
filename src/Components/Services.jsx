@@ -47,6 +47,8 @@ const services = [
   },
 ];
 
+const SERVICE_ORDER = ['Geladeira', 'Freezer', 'ArCondicionado', 'CamaraFria', 'Expositores', 'Chillers'];
+
 export default function Services({ serviceIds, intent }) {
   return (
     <section id="servicos" className="py-16 bg-gray-50">
@@ -54,16 +56,16 @@ export default function Services({ serviceIds, intent }) {
 
         <div className="text-center mb-12">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-3">
-            Nossas Especialidades
+            Soluções para diferentes equipamentos
           </h2>
           <div className="w-20 h-1.5 bg-brand-blue mx-auto rounded-full"></div>
           <p className="mt-4 text-gray-500 max-w-2xl mx-auto text-sm">
-            Conheça os serviços e consulte atendimento para o seu equipamento e região.
+            Instalação, manutenção preventiva e conserto. Escolha o equipamento e fale com nossa equipe.
           </p>
         </div>
 
         <div className={`grid grid-cols-1 sm:grid-cols-2 ${serviceIds?.length === 2 ? 'lg:grid-cols-2 max-w-4xl mx-auto' : 'lg:grid-cols-3'} gap-6`}>
-          {services.filter(service => !serviceIds || serviceIds.includes(service.id)).map((service) => (
+          {services.filter(service => !serviceIds || serviceIds.includes(service.id)).sort((a, b) => SERVICE_ORDER.indexOf(a.id) - SERVICE_ORDER.indexOf(b.id)).map((service) => (
             <div key={service.id} className="bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group flex flex-col h-full">
 
               <div className="h-48 w-full overflow-hidden relative">
