@@ -22,6 +22,8 @@ function PageNavigation() {
       : 'Refrigeração Residencial e Comercial em São Paulo | Refrigeration Company';
     document.querySelector('meta[name="description"]').setAttribute('content', page?.description
       || 'Instalação, manutenção e conserto de refrigeração e climatização residencial, comercial e industrial em São Paulo. Solicite atendimento pelo WhatsApp.');
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.href = new URL(pathname, 'https://www.refrigerationcompany.com.br').href;
     const frame = requestAnimationFrame(() => {
       const target = hash ? document.getElementById(hash.slice(1)) : null;
       if (target) target.scrollIntoView();

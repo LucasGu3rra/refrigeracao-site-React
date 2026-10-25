@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <header className="fixed w-full top-0 z-50 bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-800">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between gap-4">
-        <SiteLink to="/#hero" onClick={closeMenu} aria-label="Refrigeration Company — início">
+        <SiteLink to="/" onClick={closeMenu} aria-label="Refrigeration Company — início">
           <img src={logoImg} alt="Refrigeration Company" width="96" height="48" className="h-12 w-auto object-contain" />
         </SiteLink>
         <nav aria-label="Navegação principal" className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
@@ -33,7 +33,7 @@ export default function Header() {
       </div>
       {isMenuOpen && (
         <nav id="mobile-menu" aria-label="Navegação no celular" className="md:hidden absolute top-20 left-0 w-full bg-gray-900 border-b border-gray-800 shadow-xl p-4 flex flex-col gap-2 text-center text-white">
-          <SiteLink to="/#hero" onClick={closeMenu} className="py-3">Início</SiteLink>
+          <SiteLink to="/" onClick={closeMenu} className="py-3">Início</SiteLink>
           <SiteLink to="/conserto-geladeira" onClick={closeMenu} className="py-3">Conserto de geladeira</SiteLink>
           <SiteLink to="/refrigeracao-comercial" onClick={closeMenu} className="py-3">Refrigeração comercial</SiteLink>
           <SiteLink to={`${sectionPath}#contato`} onClick={closeMenu} className="py-3">Formulário opcional</SiteLink>
