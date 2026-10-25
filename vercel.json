@@ -1,5 +1,21 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "refrigeracao-site-react.vercel.app"
+        }
+      ],
+      "destination": "https://www.refrigerationcompany.com.br/:path*",
+      "permanent": true
+    }
   ]
 }
