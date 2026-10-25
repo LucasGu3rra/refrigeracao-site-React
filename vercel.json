@@ -7,6 +7,17 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "refrigeracao-site-react.vercel.app"
+        }
+      ],
+      "destination": "https://www.refrigerationcompany.com.br/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
